@@ -1,6 +1,6 @@
 from django.db import models
 
-class EducatioalModules(models.Model):
+class EducationalModules(models.Model):
     slug = models.SlugField(
         null=False,
         unique=True,
