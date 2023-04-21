@@ -1,9 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
+
+from .models import EducationalModules
 
 
-def home(request):
-	return HttpResponse('<h1>Главная</h1>')
+def home(request: HttpRequest) -> HttpResponse:
+	"""Модуль отвечающий за главную страницу"""
+	return render(request, 'home.html')
  
-def education(request):
-	return HttpResponse('<h1>Образовательные модули</h1>')
+def education(request: HttpRequest) -> HttpResponse:
+	"""Модуль отвечающий за страницу сообщества"""
+	edu_list = EducationalModules.objects.all()
+	context = {
+		'edu_list': edu_list,
+	}
+	return render(request, 'education.html', context)
